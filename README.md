@@ -4,10 +4,7 @@
 
 ---
 
-<div align="center">
-  <img src="Grix.png" alt="Grix" width="40%"/>
-  <p><i>System-aware. Transparent. Always on your side.</i></p>
-</div>
+<img width="300" height="300" alt="Grix" src="https://github.com/user-attachments/assets/4dc225b4-21e0-4983-bec2-8a86209a3572" />
 
 
 You switched to Linux — or you have been on it for years — and yet there is always *that moment*. Sound stops working after an update. A game crashes on launch for no obvious reason. Your controller connects but does nothing. You Google the error, land on a five-year-old forum thread, try three different commands, and an hour later, you still do not know if you fixed it or just got lucky.
@@ -31,6 +28,8 @@ Beyond fixing things, Grix doubles as a learning tool. Each issue card links to 
 Grix stores everything locally. There is no telemetry, no cloud account, no data sent anywhere. It reads from the kernel's own files and standard system tools, and it never uses `shell=True` to run commands (a common security pitfall). Privilege escalation for fixes that need it goes through PolicyKit (`pkexec`) where available, falling back to `sudo`.
 
 Grix also uses tray Icons to tell you when a scan happens, when it is asleep, when an issue arises with the level of severity, when everything is fine, and you can right-click to make it quit or sleep.
+
+
 <img width="300" height="300" alt="GrixFix" src="https://github.com/user-attachments/assets/44bf0d65-b20c-4ce0-8955-fdd9c3ab1216" />
 <img width="300" height="300" alt="GrixStudy" src="https://github.com/user-attachments/assets/aa10de42-f782-40e0-afab-90b3ef8af0c3" />
 <img width="300" height="300" alt="Grixsleep" src="https://github.com/user-attachments/assets/0e264a0e-1ffe-4510-a182-d06ab6e57d7f" />
