@@ -11,7 +11,7 @@ You switched to Linux, or you have been on it for years, and yet there is always
 
 Linux is powerful. It is also unforgiving in ways that have nothing to do with how smart you are. The knowledge required to diagnose a broken PipeWire session, a missing Vulkan ICD, or a Realtek WiFi chip with an out-of-tree driver is specialized, scattered across wikis, and changes with every kernel release. Most people should not have to know any of that just to use their computer.
 
-**Grix exists because that gap is real, and it matters.** It is the tool that watches your system, speaks plainly about what it finds, and handles the fix — so you can get back to whatever you were actually trying to do.
+**Grix exists because that gap is real, and it matters.** It is the tool that watches your system, speaks plainly about what it finds, and handles the fix, so you can get back to whatever you were actually trying to do.
 
 ---
 
