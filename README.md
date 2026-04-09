@@ -255,7 +255,7 @@ Plugins you write for your own use are not affected by this; the plugin API is i
 
 Grix will be distributed as an **AppImage** when released. An AppImage is a single self-contained file that runs on any modern Linux distribution without installation. Download it, make it executable (`chmod +x Grix-*.AppImage`), and run it. No package manager, no root, no system changes required for the application itself.
 
-AppImage requires FUSE to mount the image at runtime. Grix itself checks for both libfuse2 and libfuse3, so if your system is missing one, Grix will tell you — and offer to install it.
+AppImage requires FUSE to mount the image at runtime. Grix itself checks for both libfuse2 and libfuse3, so if your system is missing one, Grix will tell you, and offer to install it.
 
 ---
 
@@ -274,8 +274,8 @@ Grix detects the running distro via `/etc/os-release` and adapts all install com
 
 | Family | Detection | Package Manager |
 |---|---|---|
-| Debian / Ubuntu and derivatives | `apt` + `dpkg` present | `apt` |
-| Arch / Manjaro / EndeavourOS | `pacman` present | `pacman`, AUR (yay, paru, trizen, pikaur) |
+| Debian/Ubuntu and derivatives | `apt` + `dpkg` present | `apt` |
+| Arch/Manjaro/EndeavourOS | `pacman` present | `pacman`, AUR (yay, paru, trizen, pikaur) |
 | Fedora and RPM-based | `dnf` present | `dnf`, RPM Fusion, COPR |
 | openSUSE | `zypper` present | `zypper` |
 | SteamOS/Bazzite | `ID=steamos` or `ID=bazzite` in os-release | `rpm-ostree`, Flatpak |
