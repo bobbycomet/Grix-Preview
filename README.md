@@ -113,7 +113,7 @@ Beyond the general scanner, Grix includes a set of purpose-built **Hubs**: focus
 
 ### GPU Hub
 
-The GPU Hub is a full graphics driver manager for NVIDIA, AMD, and Intel GPUs. It reads your actual hardware via PCI IDs and recommends the correct driver — including which NVIDIA generation branch applies to your specific card (current 580.xx, legacy 470.xx for Kepler, or nouveau for unsupported older hardware).
+The GPU Hub is a full graphics driver manager for NVIDIA, AMD, and Intel GPUs. It reads your actual hardware via PCI IDs and recommends the correct driver, including which NVIDIA generation branch applies to your specific card (current 580.xx, legacy 470.xx for Kepler, or nouveau for unsupported older hardware).
 
 **What it shows:**
 - Detected GPU names and PCI IDs for all three vendors
@@ -125,7 +125,7 @@ The GPU Hub is a full graphics driver manager for NVIDIA, AMD, and Intel GPUs. I
 - While it does help with RTX 50 and RDNA 4, this does not mean upstream compatibility is fixed
 
 **What you can do with it:**
-- Install the NVIDIA open kernel module (recommended for Turing and newer) or the proprietary driver, per distro — with RPM Fusion enabling on Fedora, non-free repo setup on Debian, and AUR handling on Arch
+- Install the NVIDIA open kernel module (recommended for Turing and newer) or the proprietary driver, per distro, with RPM Fusion enabling on Fedora, non-free repo setup on Debian, and AUR handling on Arch
 - Install the NVIDIA 470 legacy driver for Kepler cards
 - Update NVIDIA drivers and rebuild DKMS modules
 - Fix Wayland display parameters (`nvidia-drm.modeset=1`) or X11 tearing via ForceCompositionPipeline
@@ -145,7 +145,7 @@ WiFi on Linux is one of the most frequent pain points, particularly for Realtek 
 
 **What it shows:**
 - All detected WiFi chips (PCI and USB), matched by vendor/product ID
-- Current kernel module status (loaded / installed but not loaded / not installed)
+- Current kernel module status (loaded/installed but not loaded / not installed)
 - rfkill status (soft and hard block detection)
 - NetworkManager and wpa_supplicant / iwd service state
 
@@ -174,7 +174,7 @@ Getting a controller working on Linux, particularly Xbox controllers, means choo
 - **hid-tmff2** — Force feedback driver for Thrustmaster racing wheels (T300RS, T248, TX, T128, T598, TS-PC, TS-XW). Does not conflict with any Xbox driver and can be installed alongside any of the above.
 
 **What it shows:**
-- Live status for each driver (active / installed but not loaded / not installed)
+- Live status for each driver (active/installed but not loaded/not installed)
 - Which modules are currently loaded
 - Which blacklist entries are in effect
 
