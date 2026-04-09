@@ -3,9 +3,9 @@
 > **Griffin Linux project** · GPLv3 · AppImage (coming soon) · v2.5.0
 
 ---
-
+<p align="center">
 <img width="300" height="300" alt="Grix" src="https://github.com/user-attachments/assets/4dc225b4-21e0-4983-bec2-8a86209a3572" />
-
+</p>
 
 You switched to Linux — or you have been on it for years — and yet there is always *that moment*. Sound stops working after an update. A game crashes on launch for no obvious reason. Your controller connects but does nothing. You Google the error, land on a five-year-old forum thread, try three different commands, and an hour later, you still do not know if you fixed it or just got lucky.
 
