@@ -19,7 +19,7 @@ Linux is powerful. It is also unforgiving in ways that have nothing to do with h
 
 Grix is a desktop application for Linux that watches over your system, explains what it finds in plain English, and, when it can, fixes things for you with one click.
 
-Think of it like a friendly dashboard that sits between you and the raw complexity of Linux. When something goes wrong — audio suddenly stops working, a game refuses to launch, the system is running low on disk space, a background service has crashed, Grix spots it, tells you what it means in everyday language, and offers to sort it out. No terminal required.
+Think of it like a friendly dashboard that sits between you and the raw complexity of Linux. When something goes wrong, audio suddenly stops working, a game refuses to launch, the system is running low on disk space, a background service has crashed, Grix spots it, tells you what it means in everyday language, and offers to sort it out. No terminal required.
 
 Under the hood, Grix scans dozens of system properties: running services, audio stack health, GPU drivers, disk space, firmware, network, gaming compatibility layers, streaming tools, VTuber software dependencies, CPU power profiles, backup status, drive health (SMART), system logs, and more. Every issue it finds is ranked by severity — **Error**, **Warning**, or **Info** — so you can see at a glance what needs attention right now versus what is merely worth knowing.
 
