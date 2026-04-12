@@ -63,15 +63,20 @@ Grix runs a comprehensive scan across the following areas, each of which can be 
 - Machine Check Exception (MCE) and EDAC memory errors
 - USB errors from the kernel log
 - CPU power governor and throttling
+- CPU Hub for changing the power from powersave, gaming, performance, and so on
+- Wifi Hub fixes Realtek and Broadcom issues by detecting the Wifi chips
 - Microcode updates (Intel and AMD)
 - OOM events, swap pressure, and zram configuration
 - GRUB staleness, initramfs freshness, EFI boot entries
+- Kernel autotune and Process sentry (Sentry) integration, start/stop those daemons, and configure the config files.
 
 **Gaming**
 - Steam and Proton installation
 - Vulkan ICD drivers (per GPU: NVIDIA, AMD, Intel)
 - 32-bit/multilib support for older titles
 - GameMode, MangoHud, Gamescope
+- GPU Hub for changing drivers. RDNA4 and RTX 50 GPUs are upstream projects not managed by Griffin, and Grix can't control that as these are maintainers of those projects and Griffin is not affiliated with them, so manage expectections on compatability as those projects mature.
+- Controller Hub for changing drivers for more controller compatability. Third-party controllers for sim racing wheels, Xbox, third-party Xbox 360, Xbox pro, Playstation, Nintendo, bluetooth controllers, and more. 
 - CPU governor suitability for gaming
 - Wine, Wine-Staging, GE-Proton, vkd3d-proton, Bottles
 - FUSE (libfuse2 and libfuse3) for AppImages and game launchers
@@ -122,7 +127,7 @@ The GPU Hub is a full graphics driver manager for NVIDIA, AMD, and Intel GPUs. I
 - Wayland-specific caveats (modeset requirement, GBM/EGL support thresholds)
 - Mesa version and ROCm status for AMD
 - OpenGL renderer string and Vulkan availability
-- While it does help with RTX 50 and RDNA 4, this does not mean upstream compatibility is fixed
+- While it does help with RTX 50 and RDNA 4, this does not mean upstream compatibility is fixed, those are projects not affiliated with Griffin or Grix
 
 **What you can do with it:**
 - Install the NVIDIA open kernel module (recommended for Turing and newer) or the proprietary driver, per distro, with RPM Fusion enabling on Fedora, non-free repo setup on Debian, and AUR handling on Arch
@@ -172,6 +177,7 @@ Getting a controller working on Linux, particularly Xbox controllers, means choo
 - **xone + xpad-noone** — For USB and Xbox Wireless Dongle connections. xone replaces the built-in `xpad` driver for Xbox One/Series hardware; xpad-noone is its companion for older Xbox/Xbox 360 controllers that need legacy `xpad` support alongside xone. These two are designed to run as a pair.
 - **xpad** — The upstream kernel legacy driver (original Xbox, Xbox 360, Xbox 360 Wireless). The fallback option when xone is not appropriate.
 - **hid-tmff2** — Force feedback driver for Thrustmaster racing wheels (T300RS, T248, TX, T128, T598, TS-PC, TS-XW). Does not conflict with any Xbox driver and can be installed alongside any of the above.
+- These are third-part drivers, those projects are handled outside of Griffin and Grix by different maintainers.
 
 **What it shows:**
 - Live status for each driver (active/installed but not loaded/not installed)
@@ -489,7 +495,7 @@ def my_check(settings: dict) -> list:
 register_plugin("com.example.mycheck", "My Custom Check", my_check)
 ```
 
-Plugins receive the current user settings dict so they can respect the same toggle flags as built-in checks. They return a list of `Issue` objects, which appear in the main scan UI alongside built-in results. Plugin load errors are recorded in the debug log and never crash the application.
+Plugins receive the current user settings dict so they can respect the same toggle flags as built-in checks. They return a list of `Issue` objects, which appear in the main scan UI alongside built-in results. Plugin load errors are recorded in the debug log and never crash the application. Plugins can also add new checks or abilities to Grix, but limited to the scope of what Grix is capable of, unless you expand that. This is not a limitation, it is a feature to protect Grix's core features.
 
 ---
 
