@@ -15,6 +15,27 @@ Linux is powerful. It is also unforgiving in ways that have nothing to do with h
 
 ---
 
+Update on Grix – Simplifying for Reliability
+Grix is currently under a major review and rewrite. Its core had grown overly complicated, trying to handle too many things across too many different setups. So we've made some focused changes before the first stable release:
+
+- Distro-agnostic features are being removed for now. Grix will focus tightly on Ubuntu-based systems with KDE Plasma (including Griffin Talon Edition and other Ubuntu flavors/spins). This makes it far more reliable and easier to maintain. Other Ubuntu spins and flavors will still benefit significantly from the improvements.
+
+- System health checks are being narrowed down. Other dedicated Griffin tools are now handling broader system optimization and health, so Grix can concentrate on the specific, high-frustration problems that fall outside those tools — the exact things that usually send new users to forums or Reddit.
+ 
+- Process Sentry and Kernel Autotune have been moved into a new unified tool called Game Tune Hub. This keeps performance tuning clean and centralized.
+
+- Postinstaller will now handle environment and app bundle provisioning. Workflow-based automation (e.g., "I'm a gamer/streamer/VTuber") will happen after first boot through simple user choices instead of trying to detect and configure everything automatically.
+
+These changes make Grix lighter, more predictable, and much more reliable, especially across varying kernels and tricky updates like PipeWire. The goal remains exactly the same: 
+
+- a local, transparent companion that spots real issues, explains them plainly, shows you exactly what it will do, asks for your approval, and logs everything so you can learn or undo changes.
+
+- Grix will still serve as the friendly control center that launches the right Griffin tool when needed and guides you through common headaches (hardware quirks, audio glitches, driver situations, etc.) without forcing you to become a terminal expert.
+
+We're taking the time to get this foundation solid because first impressions matter.
+
+Thanks for your patience, this rework will result in a much smoother and more trustworthy experience. The rest of Griffin (FanHub, XKM, Griffin Migrate, Appify, etc.) continues moving forward, and the overall vision of a frustration-free switch from Windows stays fully on track.
+
 ## What Is Grix?
 
 Grix is a desktop application for Linux that watches over your system, explains what it finds in plain English, and, when it can, fixes things for you with one click.
@@ -29,6 +50,7 @@ Grix stores everything locally. There is no telemetry, no cloud account, no data
 
 Grix also uses tray Icons to tell you when a scan happens, when it is asleep, when an issue arises with the level of severity, when everything is fine, and you can right-click to make it quit or sleep.
 
+UI may change from the current look based on the change of Grix.
 
 <img width="300" height="300" alt="GrixFix" src="https://github.com/user-attachments/assets/44bf0d65-b20c-4ce0-8955-fdd9c3ab1216" />
 <img width="300" height="300" alt="GrixStudy" src="https://github.com/user-attachments/assets/aa10de42-f782-40e0-afab-90b3ef8af0c3" />
@@ -38,81 +60,12 @@ Grix also uses tray Icons to tell you when a scan happens, when it is asleep, wh
 <img width="300" height="300" alt="Grixgreen" src="https://github.com/user-attachments/assets/7e61a9b4-7f07-4dad-b9d9-39431a8f6ab0" />
 
 
+---
+
 
 ---
 
-## What Grix Covers
-
-Grix runs a comprehensive scan across the following areas, each of which can be toggled on or off in Settings:
-
-**Core system**
-- Package manager health and pending updates (apt, pacman, dnf, zypper) NOT a replacement for the package manager
-- Systemd service failures (NetworkManager, Bluetooth, PipeWire, and more)
-- Audio stack — PipeWire, PulseAudio, missing sinks, crashed audio servers
-- Bluetooth — firmware gaps, kernel log errors
-- Disk space and inode usage across all mounted partitions
-- Firmware blobs — missing or failed kernel firmware loads
-- GPU drivers and DKMS module status
-- Display stack — Wayland vs X11, compositor detection
-- Flatpak and Snap runtime health
-- Network connectivity and DNS
-- Thermal — overheating CPUs, missing cooling drivers
-
-**Hardware and low-level**
-- SMART drive health (early warning of failing drives)
-- Machine Check Exception (MCE) and EDAC memory errors
-- USB errors from the kernel log
-- CPU power governor and throttling
-- CPU Hub for changing the power from powersave, gaming, performance, and so on
-- Wifi Hub fixes Realtek and Broadcom issues by detecting the Wifi chips
-- Microcode updates (Intel and AMD)
-- OOM events, swap pressure, and zram configuration
-- GRUB staleness, initramfs freshness, EFI boot entries
-- Kernel autotune and Process sentry (Sentry) integration, start/stop those daemons, and configure the config files.
-
-**Gaming**
-- Steam and Proton installation
-- Vulkan ICD drivers (per GPU: NVIDIA, AMD, Intel)
-- 32-bit/multilib support for older titles
-- GameMode, MangoHud, Gamescope
-- GPU Hub for changing drivers. RDNA4 and RTX 50 GPUs are upstream projects not managed by Griffin, and Grix can't control that as these are maintainers of those projects and Griffin is not affiliated with them, so manage expectections on compatability as those projects mature.
-- Controller Hub for changing drivers for more controller compatability. Third-party controllers for sim racing wheels, Xbox, third-party Xbox 360, Xbox pro, Playstation, Nintendo, bluetooth controllers, and more. 
-- CPU governor suitability for gaming
-- Wine, Wine-Staging, GE-Proton, vkd3d-proton, Bottles
-- FUSE (libfuse2 and libfuse3) for AppImages and game launchers
-- Controller support — including third-party controllers via Steam Input, ds4drv, xpadneo, and others
-- HDR availability and Gamescope HDR mode
-
-**Streaming and content creation**
-- OBS Studio (native and Flatpak), required plugins, V4L2 (virtual camera)
-- PipeWire screen capture readiness for Wayland
-- Video encoding hardware acceleration (VAAPI, NVENC, AMD AMF)
-- DaVinci Resolve dependencies and GPU acceleration prerequisites
-- Kdenlive, Blender, Inkscape, GIMP readiness checks
-
-**VTuber**
-- VSeeFace, VNyan, and related runtime dependencies
-- Wine environment for Windows-only VTuber software
-- Virtual camera support (V4L2loopback) for avatar output
-- PulseAudio/PipeWire virtual sinks for audio routing
-
-**Production/office**
-- LibreOffice installation and font coverage
-- PDF tooling
-- Backup health — Timeshift snapshots, BorgBackup, Restic freshness
-
-**Maintenance**
-- Systemd timer and cron job failures
-- User group membership (audio, video, input, gamepad, etc.)
-- Fix history log (30-day rolling record of every applied fix)
-<img width="1920" height="1080" alt="Screenshot_20260409_125150" src="https://github.com/user-attachments/assets/43ac2dbf-7820-4897-b29e-5ae41bcf66ac" />
-<img width="1920" height="1080" alt="Screenshot_20260409_125536" src="https://github.com/user-attachments/assets/62956602-828d-4c3b-8e50-43e868884523" />
-<img width="1920" height="1080" alt="Screenshot_20260409_125602" src="https://github.com/user-attachments/assets/a07a438d-764a-402f-abb2-033cb86008c6" />
-<img width="1920" height="1080" alt="Screenshot_20260409_125635" src="https://github.com/user-attachments/assets/210c80c1-106b-4f70-b1f4-6ca16b31fafc" />
-
----
-
-## Hubs — Dedicated Hardware Management Panels
+## Hubs — Dedicated Hardware Management Panels (these may get their own tool, or go into Game Tune Hub)
 
 Beyond the general scanner, Grix includes a set of purpose-built **Hubs**: focused panels for hardware categories that are complex enough to deserve their own dedicated interface. Where the scanner surfaces a problem and offers a fix, a Hub gives you the full picture — what hardware you have, what driver is loaded, what your options are, and buttons to act on all of it without leaving the application.
 
@@ -191,41 +144,12 @@ Getting a controller working on Linux, particularly Xbox controllers, means choo
 - Configure xpadneo quirks for third-party controllers (8BitDo Nintendo layout swap, GameSir trigger rumble disable, GuliKit MAC-based flags) via an editable config file and one-click driver reload
 - Access a full pairing and connection guide for Bluetooth (bluetoothctl flow), USB, and Xbox Wireless Dongle connections
 - Run controller detection checks (`ls /dev/input/js*`, `jstest`, `evtest`, `fftest`) directly from the panel
+
 <img width="1920" height="1080" alt="Screenshot_20260409_125244" src="https://github.com/user-attachments/assets/72d79fec-0809-4102-afc6-9285d8f73629" />
 
 ---
 
 ## CPU Hub in progress
-
-## Who Is Grix For?
-
-### Windows switchers
-
-If you have recently moved from Windows, Linux can feel like a different world. Device drivers, audio servers, package managers, and desktop environments, the vocabulary alone is unfamiliar. Grix is designed to remove that friction. It explains issues in the same plain language you would use to describe a problem to a friend, and its one-click fixes handle the terminal commands behind the scenes. The built-in lesson system is there when you are ready to understand what is actually happening; you are never forced to read it just to fix something.
-
-### General everyday users
-
-You want your computer to work. You do not particularly care how. Grix lets you stay in that mindset. Open it after an update, after something feels off, or just occasionally to confirm everything is healthy. It works quietly, surfaces real problems, and stays out of your way the rest of the time.
-
-### Gamers
-
-Gaming on Linux has come a long way, with Steam, Proton, Wine, Lutris, Heroic, but the ecosystem still has sharp edges. Missing Vulkan drivers, broken 32-bit support, the wrong CPU governor, a missing GameMode install, an AppImage that fails silently because libfuse2 is absent: Grix knows to look for all of these and more. It also checks HDR readiness and Gamescope, checks your controller configuration (including third-party controllers like DualSense, Xbox via xpadneo, and generic USB HID devices), and surfaces Steam Input quirks. If a game is misbehaving and you do not know why, running a Grix scan is a fast first step.
-
-### Streamers
-
-OBS, virtual cameras, screen capture under Wayland, hardware video encoding, and streaming on Linux have specific requirements that are easy to miss. Grix checks whether OBS is installed and functional, whether V4L2 is available for a virtual camera, whether the relevant PipeWire capture portal is working, and whether your GPU supports NVENC, VAAPI, or AMD AMF for encoding. It also checks for common OBS plugin gaps.
-
-### VTubers
-
-Running VTuber software on Linux often means running Windows-native apps through Wine, routing audio through virtual PulseAudio sinks, and piping video through V4L2loopback. Each of those layers can break quietly. Grix checks the whole chain: the Wine environment, the virtual audio sink, V4L2loopback module availability, and the known runtime dependencies for popular VTuber applications.
-
-### Production users (office and document work)
-
-If your day is spreadsheets, documents, PDFs, and email, Grix makes sure the tools that support that workflow are healthy, including LibreOffice installation and font coverage, PDF utilities, backup snapshot freshness, and general system stability.
-
-### Users who are tired of the terminal for everything
-
-The terminal is powerful, but not everyone wants to learn thirty commands just to find out why their speakers stopped working. Grix is for the user who knows they need *something* done but does not want to research which command, in which syntax, with which flags, on which distro. Grix figures that out and asks before acting.
 
 ---
 
@@ -271,7 +195,8 @@ AppImage requires FUSE to mount the image at runtime. Grix itself checks for bot
 
 - Python 3.10+
 - PyQt6
-- A systemd-based Linux distribution (Debian/Ubuntu, Arch/Manjaro/EndeavourOS, Fedora, openSUSE, SteamOS/Bazzite, and derivatives)
+- A systemd-based Linux distribution (Debian/Ubuntu)
+- KDE
 - JetBrains Mono font (optional but recommended; used for terminal-style detail views)
 
 ### Supported Distros
@@ -281,270 +206,6 @@ Grix detects the running distro via `/etc/os-release` and adapts all install com
 | Family | Detection | Package Manager |
 |---|---|---|
 | Debian/Ubuntu and derivatives | `apt` + `dpkg` present | `apt` |
-| Arch/Manjaro/EndeavourOS | `pacman` present | `pacman`, AUR (yay, paru, trizen, pikaur) |
-| Fedora and RPM-based | `dnf` present | `dnf`, RPM Fusion, COPR |
-| openSUSE | `zypper` present | `zypper` |
-| SteamOS/Bazzite | `ID=steamos` or `ID=bazzite` in os-release | `rpm-ostree`, Flatpak |
-| Immutable (Silverblue, Kinoite, MicroOS) | `rpm-ostree` or `bootc` present | `rpm-ostree` + Flatpak |
-
-On immutable distros, Grix automatically prefers Flatpak installs and `rpm-ostree` overlays over traditional package manager commands.
-
-### Running Grix
-
-**GUI mode (default)**
-
-```
-python3 grix.py
-# or, once installed as AppImage:
-./Grix.AppImage
-```
-
-**CLI mode**
-
-Append `--cli` to enter headless mode, which runs checks without a graphical interface. Useful in scripts, SSH sessions, or for automation.
-
-```
-python3 grix.py --cli <subcommand> [options]
-```
-
-**Guardian daemon mode**
-
-```
-python3 grix.py --guardian
-```
-
-The Guardian runs as a background process, performing pulse scans on a configurable interval and optionally applying safe fixes automatically. See the Guardian section below for full details.
-
----
-
-### CLI Reference
-
-#### `grix --cli scan`
-
-Run a full system scan and print results to stdout.
-
-```
-grix --cli scan [--format text|json] [--pulse] [--dry-run] [--simulate-distro DISTRO]
-```
-
-| Flag | Description |
-|---|---|
-| `--format text` | Human-readable output (default) |
-| `--format json` | Machine-readable JSON — includes distro, kernel, scan time, issue list, and summary counts |
-| `--pulse` | Fast pulse scan: checks services, packages, GPU, and audio only (skips disk, firmware, network, thermal) |
-| `--dry-run` | Show what fix commands would be run without executing them |
-| `--simulate-distro DISTRO` | Set `GRIX_SIMULATE_DISTRO` environment variable to simulate a different distro for testing |
-
-**JSON output schema:**
-
-```
-{
-  "distro": "Ubuntu 24.04",
-  "kernel": "6.8.0-45-generic",
-  "scan_time": "2025-04-09T14:32:00",
-  "pulse": false,
-  "dry_run": false,
-  "issues": [
-    {
-      "id": "pipewire_not_running",
-      "title": "PipeWire audio server is not running",
-      "severity": "error",
-      "category": "Audio",
-      "description": "...",
-      "trust_level": "never_auto",
-      "fix_steps": [{"label": "Start PipeWire", "cmd": "systemctl --user start pipewire"}],
-      "suggested_fix": ""
-    }
-  ],
-  "summary": {
-    "total": 3,
-    "errors": 1,
-    "warnings": 1,
-    "info": 1
-  }
-}
-```
-
-#### `grix --cli fix`
-
-Apply an automated fix for a specific issue by its ID. Issue IDs are shown in `scan` output and in JSON.
-
-```
-grix --cli fix --issue-id ISSUE_ID [--yes] [--dry-run]
-```
-
-| Flag | Description |
-|---|---|
-| `--issue-id ID` | The issue ID to fix (required) |
-| `--yes` | Skip the confirmation prompt and apply immediately |
-| `--dry-run` | Print the fix commands without running them |
-
-Without `--yes`, Grix prints the fix title, trust level, and each step command, then asks for confirmation before proceeding.
-
-**Example:**
-
-```
-# See what is wrong
-grix --cli scan
-
-# Apply a fix non-interactively
-grix --cli fix --issue-id libfuse2_missing --yes
-
-# Preview what the fix would do without running it
-grix --cli fix --issue-id gaming_cpu_governor --dry-run
-```
-
-#### `grix --cli doctor`
-
-A quick system health summary modelled after Windows' `sfc /scannow` or `apt doctor`. Prints distro, kernel, VM status, immutable OS detection, battery level (if applicable), key service states, and a brief issue count from a pulse scan.
-
-```bash
-grix --cli doctor
-```
-
-```
-══ Grix Doctor ══════════════════════════════════════════
-  Distro  : Fedora Linux 40
-  Kernel  : 6.9.3-200.fc40.x86_64
-  VM      : no
-  Immutable: no
-  Battery : 87% (Discharging)
-
-  Services:
-    ✓ NetworkManager: active
-    ✓ bluetooth: active
-    ✓ pipewire: active
-
-  Issues  : 0 error(s), 1 warning(s), 2 info
-  Run 'grix --cli scan' for details.
-══════════════════════════════════════════════════════════
-```
-
----
-
-### The Issue Model
-
-Every finding Grix produces is an `Issue` object. The key fields:
-
-| Field | Description |
-|---|---|
-| `id` | Stable string identifier (e.g. `vulkan_icd_missing`, `disk_full_/home`) |
-| `title` | Short plain-English headline |
-| `description` | Full explanation of what is wrong and why it matters |
-| `severity` | `error`, `warning`, or `info` |
-| `category` | Grouping label (Audio, Gaming, Disk, Firmware, etc.) |
-| `fix_steps` | Ordered list of `(label, command)` tuples to apply the fix |
-| `trust_level` | Controls Guardian auto-fix behaviour (see below) |
-| `suggested_fix` | Human-readable hint shown if an automated fix step fails |
-| `learn_section` | Links to the relevant lesson in the built-in Learn Terminal |
-
-**Trust levels:**
-
-| Level | Meaning | Guardian Balanced | Guardian Aggressive |
-|---|---|---|---|
-| `always_safe` | Low-risk, easily reversible (e.g. restart a service) | Auto-applied | Auto-applied |
-| `requires_confirm` | Moderate impact (e.g. install a package) | Notify only | Auto-applied |
-| `never_auto` | High impact or irreversible (e.g. OS-layer change, reboot needed) | Notify only | Notify only |
-
----
-
-### The Guardian (Background Service)
-
-The Guardian is Grix's optional background daemon. When enabled, it wakes on a configurable interval, runs a pulse scan, and acts based on the configured **maintenance policy**:
-
-| Policy | Behaviour |
-|---|---|
-| `conservative` | Scan only — log findings, never act |
-| `balanced` (default) | Auto-apply `always_safe` fixes; send desktop notifications for everything else |
-| `aggressive` | Auto-apply `always_safe` and `requires_confirm` fixes; notify for `never_auto` issues |
-
-The Guardian skips scans when the battery is below 15% to avoid draining a laptop. It can also be configured to run a targeted scan immediately after package updates (`guardian_post_update`).
-
-Desktop notifications are sent via `notify-send` and appear in the standard system notification area.
-
-Guardian settings are stored in `~/.local/share/grix/settings.json` and can be edited from the Settings tab in the GUI or directly in the file.
-
----
-
-### The Plugin System
-
-Grix exposes a stable plugin API for extending the scanner with custom checks. Plugins are plain Python files placed in `~/.local/share/grix/plugins/`. Every `.py` file in that directory is loaded automatically when Grix starts (GUI, CLI, and Guardian modes all load plugins).
-
-**Minimal plugin example:**
-
-```
-# ~/.local/share/grix/plugins/my_check.py
-
-from grix import register_plugin, Issue
-
-def my_check(settings: dict) -> list:
-    issues = []
-    # ... your logic here ...
-    if something_wrong:
-        issues.append(Issue(
-            title="My custom issue",
-            description="Something is not right with my custom setup.",
-            severity=Issue.WARNING,
-            category="Custom",
-            fix_steps=[("Fix it", ["systemctl", "restart", "my-service"])],
-            issue_id="my_custom_issue",
-            trust_level=Issue.TRUST_CONFIRM,
-        ))
-    return issues
-
-register_plugin("com.example.mycheck", "My Custom Check", my_check)
-```
-
-Plugins receive the current user settings dict so they can respect the same toggle flags as built-in checks. They return a list of `Issue` objects, which appear in the main scan UI alongside built-in results. Plugin load errors are recorded in the debug log and never crash the application. Plugins can also add new checks or abilities to Grix, but limited to the scope of what Grix is capable of, unless you expand that. This is not a limitation, it is a feature to protect Grix's core features.
-
----
-
-### Data Storage
-
-All Grix data lives under `~/.local/share/grix/`:
-
-| Path | Contents |
-|---|---|
-| `settings.json` | User preferences and check toggles |
-| `trusted.json` | Issues permanently marked as resolved |
-| `logs/fix_history.jsonl` | Rolling 30-day log of every applied fix (JSONL format) |
-| `debug.log` | Timestamped diagnostic log (plugin loads, Guardian pulse results, fix outcomes) |
-| `plugins/` | User-installed plugin `.py` files |
-
-No data is written outside this directory. No network connections are made.
-
----
-
-### Settings Reference
-
-The following keys are recognised in `settings.json`. All are booleans unless noted.
-
-| Key | Default | Description |
-|---|---|---|
-| `gaming_checks` | `true` | Gaming-specific checks (Vulkan, Proton, GameMode, controllers, etc.) |
-| `streaming_checks` | `true` | OBS, virtual camera, encoding hardware |
-| `vtuber_checks` | `true` | VTuber software dependencies and audio routing |
-| `production_checks` | `true` | LibreOffice, PDF tools, backup health |
-| `content_creation_checks` | `true` | DaVinci Resolve, Kdenlive, Blender, hardware encoding |
-| `advanced_hardware_checks` | `true` | SMART drive health, MCE/EDAC, USB kernel errors |
-| `memory_checks` | `true` | OOM events, swap pressure, zram |
-| `boot_checks` | `true` | GRUB staleness, initramfs, EFI entries |
-| `timer_checks` | `true` | Systemd timer and cron job failures |
-| `cpu_power_checks` | `true` | CPU governor, throttling, microcode |
-| `permission_checks` | `true` | User group membership |
-| `backup_checks` | `true` | Timeshift, BorgBackup, Restic |
-| `maintenance_policy` | `"balanced"` | Guardian policy: `"aggressive"`, `"balanced"`, `"conservative"` |
-| `guardian_enabled` | `false` | Enable the Guardian background daemon |
-| `guardian_interval_min` | `60` | Minutes between Guardian pulse scans |
-| `guardian_post_update` | `true` | Run targeted scan after package updates |
-
----
-
-### Environment Variables
-
-| Variable | Description |
-|---|---|
-| `GRIX_SIMULATE_DISTRO` | Override distro detection for testing. Set to `ubuntu`, `arch`, `fedora`, or `opensuse`. |
 
 ---
 
