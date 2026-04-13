@@ -15,7 +15,7 @@ Linux is powerful. It is also unforgiving in ways that have nothing to do with h
 
 ---
 
-Update on Grix – Simplifying for Reliability
+## **Update on Grix – Simplifying for Reliability**
 Grix is currently under a major review and rewrite. Its core had grown overly complicated, trying to handle too many things across too many different setups. So we've made some focused changes before the first stable release:
 
 - Distro-agnostic features are being removed for now. Grix will focus tightly on Ubuntu-based systems with KDE Plasma (including Griffin Talon Edition and other Ubuntu flavors/spins). This makes it far more reliable and easier to maintain. Other Ubuntu spins and flavors will still benefit significantly from the improvements.
